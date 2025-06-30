@@ -204,9 +204,20 @@
             background: linear-gradient(135deg, #e3eec1 0%, #d4e6b8 100%);
         }
         
-        .square.snake {
-            border-left: 5px solid #003f82;
-            background: linear-gradient(135deg, #b5e2fc 0%, #a0d5f7 100%);
+        .square.locked {
+            border-left: 5px solid #6c757d;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            opacity: 0.5;
+            cursor: not-allowed;
+            position: relative;
+        }
+        
+        .square.locked::before {
+            content: '🔒';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
         }
         
         .square-number {
@@ -613,11 +624,11 @@
             <div class="instructions">
                 <div class="step">
                     <strong>1. Roll the Dice</strong>
-                    <p>Click the dice button to roll and move forward on your journey</p>
+                    <p>Click the dice button to roll and move forward on your journey (demo shows first 4 squares)</p>
                 </div>
                 <div class="step">
                     <strong>2. Explore Each Square</strong>
-                    <p>Click on any square to read its educational content and discussion prompts</p>
+                    <p>Click on any accessible square to read its educational content and discussion prompts</p>
                 </div>
                 <div class="step">
                     <strong>3. View Vocabulary Cards</strong>
@@ -628,8 +639,8 @@
                     <p>Use the discussion questions with your class, team, or for personal reflection</p>
                 </div>
                 <div class="step">
-                    <strong>5. Continue the Journey</strong>
-                    <p>Remember: Walking in Good Relations is a lifelong practice of learning and unlearning</p>
+                    <strong>5. Get the Full Experience</strong>
+                    <p>This demo shows 4 of 16 squares. Order the complete game with all transformative content!</p>
                 </div>
             </div>
         </div>
@@ -754,70 +765,94 @@
             },
             {
                 number: 5,
-                title: "Make fun of someone for not doing it right",
-                type: "snake",
+                title: "Locked Square",
+                type: "locked",
                 vocab: "",
-                prompt: "Perfectionism in the process of unlearning anti-Indigenous racism is a fundamentally colonial concept. We are all bound to make mistakes along the way. This journey is not a competition to 'decolonize better' than one another; rather, it is an opportunity to uplift each other and grow together.",
-                discussion: "Can you brainstorm some phrases to invite someone into a conversation about how to do things differently rather than make fun of them?"
+                prompt: "",
+                discussion: ""
             },
             {
                 number: 6,
-                title: "Get to know the stories of local Ancestors",
-                type: "ladder",
-                vocab: "Extraction, Cultural Appropriation",
-                prompt: "Seeking out ancestral stories from the land will provide you with valuable context about the area where you live, as well as a deeper understanding of the people who own the land. When seeking these stories, it is essential to incorporate cultural protocols and foster good relationships in your learning process.",
-                discussion: "When researching Ancestral stories, can you think of examples of how this learning might lead to cultural appropriation? Additionally, can you brainstorm ideas on how to approach this respectfully?"
+                title: "Locked Square",
+                type: "locked",
+                vocab: "",
+                prompt: "",
+                discussion: ""
             },
             {
                 number: 7,
-                title: "Educate yourself on Residential Schools even though it is hard",
-                type: "ladder",
-                vocab: "Residential School",
-                prompt: "Educating yourself about residential schools is vital, even though the subject can be emotionally challenging. Confronting this painful history often evokes discomfort, which is a normal part of the learning experience. This discomfort can motivate us to pursue decolonization and reflect on our own beliefs and privileges.",
-                discussion: "Why is it important to you to educate yourself on Residential Schools?"
+                title: "Locked Square",
+                type: "locked",
+                vocab: "",
+                prompt: "",
+                discussion: ""
             },
             {
                 number: 8,
-                title: "Believe there is only one way to learn about history",
-                type: "snake",
-                vocab: "Erasure of Indigenous Culture",
-                prompt: "Until recently, our media and education system largely ignored the truth about Canada's role in the attempted assimilation of Indigenous peoples. For many decades, Indigenous cultures and experiences have been hidden, rewritten by non-Indigenous authors and scholars. Indigenous languages, cultures, stories and history, were actively erased.",
-                discussion: "Is there a story from history that you have recently learned a new perspective about? How has it changed your approach to learning and critical thinking?"
+                title: "Locked Square",
+                type: "locked",
+                vocab: "",
+                prompt: "",
+                discussion: ""
             },
             {
                 number: 9,
-                title: "Practice Cultural Empathy when learning about colonization",
-                type: "ladder",
-                vocab: "Cultural Empathy",
-                prompt: "Learning the history and truth of erasure and the impacts of Indian residential schools is complex and should feel uncomfortable. But remember, discomfort activates us to contribute to changing the society we live in. Continuing learning is brave and sets us up to be better allies. Practicing cultural empathy is key.",
-                discussion: "What are some things you can do to take care of yourself in this learning experience?"
+                title: "Locked Square",
+                type: "locked",
+                vocab: "",
+                prompt: "",
+                discussion: ""
             },
             {
                 number: 10,
-                title: "Forget to ask for consent when wanting to talk about Residential Schools",
-                type: "snake",
-                vocab: "Consent, Triggers",
-                prompt: "Considering how difficult it has been for you to learn about residential schools, imagine how difficult it is for Indigenous people. The impacts of residential schools are ongoing and it is triggering to think of the violence that continues to hurt our families. It is important to practise asking for ongoing consent when talking about these difficult topics.",
-                discussion: "Can you brainstorm ways to check in with those who are sharing their experiences with residential schools? How will you continue to ask for consent?"
+                title: "Locked Square",
+                type: "locked",
+                vocab: "",
+                prompt: "",
+                discussion: ""
             },
             {
                 number: 11,
-                title: "Learn about UNDRIP & the TRC Calls to Action",
-                type: "ladder",
-                vocab: "UNDRIP, Truth and Reconciliation Commission Calls to Action",
-                prompt: "Taking the time to read the United Nations Declaration on the Rights of Indigenous Peoples and the TRC's Calls to Action helps you respond to the question 'what should we do?' Each document maps out actions that governments, community members, companies and individuals to implement to reverse the impacts of colonialism.",
-                discussion: "Why is it important to learn about UNDRIP and the TRC Calls to Action?"
+                title: "Locked Square",
+                type: "locked",
+                vocab: "",
+                prompt: "",
+                discussion: ""
             },
             {
                 number: 12,
-                title: "Assume all Indigenous Peoples have the same cultures, histories, & experiences",
-                type: "snake",
-                vocab: "Pan-Indigeneity, Urban Indigenous",
-                prompt: "Like countries around the globe, Indigenous Nations also have vast and varied cultures, histories, and experiences. Believing that we all share one culture is a colonial view that reinforces assimilation. The erasure of Indigenous cultures includes seeing us as pan-indigenous. Further, to believe that Indigenous culture stopped evolving and changing after colonisation is a harmful belief as well.",
-                discussion: "How can we, as allies, combat the harmful effects of Pan-Indigeneity?"
+                title: "Locked Square",
+                type: "locked",
+                vocab: "",
+                prompt: "",
+                discussion: ""
             },
             {
                 number: 13,
+                title: "Locked Square",
+                type: "locked",
+                vocab: "",
+                prompt: "",
+                discussion: ""
+            },
+            {
+                number: 14,
+                title: "Locked Square",
+                type: "locked",
+                vocab: "",
+                prompt: "",
+                discussion: ""
+            },
+            {
+                number: 15,
+                title: "Locked Square",
+                type: "locked",
+                vocab: "",
+                prompt: "",
+                discussion: ""
+            },
+            {
+                number: 16,
                 title: "Keep on walking in good relations",
                 type: "ladder",
                 vocab: "",
@@ -847,6 +882,8 @@
                     </div>
                 `;
                 
+                }
+                
                 board.appendChild(squareElement);
             });
             
@@ -868,15 +905,18 @@
         function movePlayer(steps) {
             currentPosition += steps;
             
-            if (currentPosition >= 13) {
-                currentPosition = 13;
+            if (currentPosition >= 4) {
+                // Demo limit - encourage purchase
+                currentPosition = 4;
+                setTimeout(() => {
+                    alert('🎓 Demo Complete! You\'ve experienced the first 4 squares of Walking in Good Relations.\n\n✨ Get the full game with all 16 transformative squares + complete vocabulary cards + educator guide for $88 at ta7taliya.com');
+                }, 500);
                 gameComplete = true;
-                alert('Congratulations! You\'ve completed your journey of Walking in Good Relations. Remember, this is a lifelong journey of learning and unlearning.');
             }
             
             updatePlayerPosition();
             
-            if (currentPosition > 0 && currentPosition <= 13) {
+            if (currentPosition > 0 && currentPosition <= 16) {
                 const currentSquare = gameSquares[currentPosition - 1];
                 setTimeout(() => showSquareDetails(currentSquare), 500);
             }
@@ -897,6 +937,45 @@
         function showSquareDetails(square) {
             const modal = document.getElementById('squareModal');
             const content = document.getElementById('modalContent');
+            
+            // Limit demo access to first 4 squares and final square (16)
+            if (square.number > 4 && square.number < 16) {
+                content.innerHTML = `
+                    <h2>🔒 Full Game Preview</h2>
+                    <div style="text-align: center; padding: 40px 20px;">
+                        <div style="font-size: 3rem; margin-bottom: 20px;">🎓</div>
+                        <h3 style="color: #003f82; margin-bottom: 15px;">Unlock All 16 Squares</h3>
+                        <p style="margin-bottom: 20px; font-size: 1.1rem;">This demo shows squares 1-4. The complete game includes 12 additional transformative learning experiences:</p>
+                        <ul style="text-align: left; max-width: 400px; margin: 20px auto;">
+                            <li>Making fun of others (learning moment)</li>
+                            <li>Local Ancestor stories</li>
+                            <li>Residential Schools education</li>
+                            <li>Cultural Empathy practices</li>
+                            <li>UNDRIP & TRC Calls to Action</li>
+                            <li>Pan-Indigeneity awareness</li>
+                            <li>And more transformative content...</li>
+                        </ul>
+                        <div style="margin-top: 30px;">
+                            <button class="card-btn" onclick="window.open('https://www.ta7taliya.com', '_blank')" style="font-size: 1.1rem; padding: 15px 30px;">Get Complete Game - $88</button>
+                        </div>
+                    </div>
+                `;
+                modal.style.display = 'block';
+                return;
+            }
+            
+            // Handle locked squares
+            if (square.type === 'locked') {
+                content.innerHTML = `
+                    <h2>🔒 Locked Square ${square.number}</h2>
+                    <div style="text-align: center; padding: 30px;">
+                        <p style="font-size: 1.2rem; margin-bottom: 20px;">This square is available in the full game!</p>
+                        <button class="card-btn" onclick="window.open('https://www.ta7taliya.com', '_blank')">Unlock at ta7taliya.com</button>
+                    </div>
+                `;
+                modal.style.display = 'block';
+                return;
+            }
             
             content.innerHTML = `
                 <h2>${square.number}. ${square.title}</h2>
@@ -921,7 +1000,7 @@
                 </div>
                 
                 <div class="card-controls">
-                    <button class="card-btn" onclick="showVocabCard(${square.number})">View Vocab Card</button>
+                    ${square.vocab ? `<button class="card-btn" onclick="showVocabCard(${square.number})">View Vocab Card</button>` : ''}
                     <button class="card-btn secondary" onclick="closeModal()">Close</button>
                 </div>
             `;
