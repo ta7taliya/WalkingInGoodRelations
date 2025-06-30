@@ -1,0 +1,1959 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Walking In Good Relations - Interactive Demo</title>
+
+    <meta name="description" content="Interactive demo of Walking in Good Relations - a Sínulkhay & Ladders game for unlearning anti-Indigenous racism. Educational tool for schools and colleges.">
+
+    <meta name="keywords" content="Indigenous education, decolonizing, educational games, reconciliation, anti-racism">
+
+    <meta name="author" content="Walking in Good Relations">
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap');
+
+        
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+        
+
+        body {
+
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            background: linear-gradient(135deg, #b5e2fc 0%, #003f82 100%);
+
+            min-height: 100vh;
+
+            padding: 20px;
+
+        }
+
+        
+
+        .game-container {
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            background: white;
+
+            border-radius: 20px;
+
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+
+            overflow: hidden;
+
+        }
+
+        
+
+        .header {
+
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+
+            color: #333;
+
+            padding: 40px 30px;
+
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+        
+
+        .header::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            right: 0;
+
+            bottom: 0;
+
+            background: 
+
+                linear-gradient(45deg, #ca3941 0%, #ca3941 20%, transparent 20%, transparent 30%, #003f82 30%, #003f82 50%, transparent 50%, transparent 60%, #e3eec1 60%, #e3eec1 80%, transparent 80%),
+
+                linear-gradient(-45deg, rgba(202,57,65,0.1) 0%, rgba(202,57,65,0.1) 25%, transparent 25%, transparent 50%, rgba(0,63,130,0.1) 50%, rgba(0,63,130,0.1) 75%, transparent 75%);
+
+            opacity: 0.1;
+
+            z-index: 1;
+
+        }
+
+        
+
+        .header-content {
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+        
+
+        .game-logo {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 30px;
+
+            margin-bottom: 20px;
+
+            flex-wrap: wrap;
+
+        }
+
+        
+
+        .visual-elements {
+
+            display: flex;
+
+            gap: 20px;
+
+            align-items: center;
+
+        }
+
+        
+
+        .ladder-symbol {
+
+            width: 60px;
+
+            height: 60px;
+
+            background: #ca3941;
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+        
+
+        .ladder-steps {
+
+            width: 40px;
+
+            height: 40px;
+
+            background: 
+
+                linear-gradient(0deg, white 0%, white 20%, transparent 20%, transparent 30%, white 30%, white 50%, transparent 50%, transparent 60%, white 60%, white 80%, transparent 80%);
+
+            position: relative;
+
+        }
+
+        
+
+        .ladder-steps::before,
+
+        .ladder-steps::after {
+
+            content: '';
+
+            position: absolute;
+
+            width: 4px;
+
+            height: 100%;
+
+            background: white;
+
+            top: 0;
+
+        }
+
+        
+
+        .ladder-steps::before {
+
+            left: 6px;
+
+        }
+
+        
+
+        .ladder-steps::after {
+
+            right: 6px;
+
+        }
+
+        
+
+        .sinulkhay-symbol {
+
+            width: 80px;
+
+            height: 60px;
+
+            background: #003f82;
+
+            border-radius: 40px 40px 40px 40px;
+
+            position: relative;
+
+            transform: rotate(-20deg);
+
+        }
+
+        
+
+        .sinulkhay-symbol::before {
+
+            content: '';
+
+            position: absolute;
+
+            width: 20px;
+
+            height: 15px;
+
+            background: #003f82;
+
+            right: -10px;
+
+            top: 5px;
+
+            clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+
+        }
+
+        
+
+        .sinulkhay-symbol::after {
+
+            content: '';
+
+            position: absolute;
+
+            width: 60px;
+
+            height: 3px;
+
+            background: white;
+
+            top: 50%;
+
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            border-radius: 2px;
+
+        }
+
+        
+
+        .main-title {
+
+            font-size: 4rem;
+
+            font-weight: 900;
+
+            font-family: 'Crimson Text', serif;
+
+            color: #003f82;
+
+            margin: 0;
+
+            line-height: 0.9;
+
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+
+        }
+
+        
+
+        .subtitle {
+
+            font-size: 1.4rem;
+
+            color: #495057;
+
+            margin: 10px 0 0 0;
+
+            font-style: italic;
+
+            font-weight: 400;
+
+        }
+
+        
+
+        .demo-badge {
+
+            background: linear-gradient(135deg, #ffc107 0%, #ff8c00 100%);
+
+            color: white;
+
+            padding: 8px 20px;
+
+            border-radius: 25px;
+
+            font-size: 1rem;
+
+            font-weight: bold;
+
+            display: inline-block;
+
+            margin-top: 15px;
+
+            box-shadow: 0 3px 10px rgba(255,193,7,0.3);
+
+        }
+
+        
+
+        .game-board {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 15px;
+
+            padding: 30px;
+
+            background: #f8f9fa;
+
+        }
+
+        
+
+        .square {
+
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 20px;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+            min-height: 200px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+        }
+
+        
+
+        .square:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+
+        }
+
+        
+
+        .square.ladder {
+
+            border-left: 5px solid #ca3941;
+
+            background: linear-gradient(135deg, #e3eec1 0%, #d4e6b8 100%);
+
+        }
+
+        
+
+        .square.snake {
+
+            border-left: 5px solid #003f82;
+
+            background: linear-gradient(135deg, #b5e2fc 0%, #a0d5f7 100%);
+
+        }
+
+        
+
+        .square-number {
+
+            font-size: 1.5rem;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+
+            color: #495057;
+
+        }
+
+        
+
+        .square-title {
+
+            font-size: 1.1rem;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+
+            color: #212529;
+
+            line-height: 1.3;
+
+        }
+
+        
+
+        .square-type {
+
+            font-size: 0.8rem;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            align-self: flex-start;
+
+            margin-top: 10px;
+
+        }
+
+        
+
+        .ladder-badge {
+
+            background: #ca3941;
+
+            color: white;
+
+        }
+
+        
+
+        .snake-badge {
+
+            background: #003f82;
+
+            color: white;
+
+        }
+
+        
+
+        .controls {
+
+            padding: 30px;
+
+            background: white;
+
+            text-align: center;
+
+            border-top: 2px solid #e9ecef;
+
+        }
+
+        
+
+        .dice {
+
+            width: 80px;
+
+            height: 80px;
+
+            background: #003f82;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 15px;
+
+            font-size: 2rem;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+            margin: 0 20px;
+
+        }
+
+        
+
+        .dice:hover {
+
+            background: #ca3941;
+
+            transform: scale(1.1);
+
+        }
+
+        
+
+        .player-position {
+
+            font-size: 1.2rem;
+
+            margin: 20px 0;
+
+            padding: 15px;
+
+            background: #e3eec1;
+
+            border-radius: 10px;
+
+            display: inline-block;
+
+            border: 2px solid #ca3941;
+
+        }
+
+        
+
+        .modal {
+
+            display: none;
+
+            position: fixed;
+
+            z-index: 1000;
+
+            left: 0;
+
+            top: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background-color: rgba(0,0,0,0.5);
+
+            backdrop-filter: blur(5px);
+
+        }
+
+        
+
+        .modal-content {
+
+            background-color: white;
+
+            margin: 5% auto;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            width: 80%;
+
+            max-width: 600px;
+
+            max-height: 80vh;
+
+            overflow-y: auto;
+
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+
+        }
+
+        
+
+        .close {
+
+            color: #aaa;
+
+            float: right;
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+        
+
+        .close:hover {
+
+            color: #000;
+
+        }
+
+        
+
+        .vocab-term {
+
+            background: #e7f3ff;
+
+            padding: 10px;
+
+            border-radius: 8px;
+
+            margin: 10px 0;
+
+            border-left: 4px solid #007bff;
+
+        }
+
+        
+
+        .discussion-prompt {
+
+            background: #fff3cd;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            margin: 15px 0;
+
+            border-left: 4px solid #ffc107;
+
+        }
+
+        
+
+        .vocab-card {
+
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+
+            border: 2px solid #dee2e6;
+
+            border-radius: 15px;
+
+            padding: 30px;
+
+            margin: 20px 0;
+
+            position: relative;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+            min-height: 400px;
+
+            cursor: pointer;
+
+            transition: transform 0.3s ease;
+
+        }
+
+        
+
+        .vocab-card:hover {
+
+            transform: translateY(-2px);
+
+        }
+
+        
+
+        .vocab-card.flipped {
+
+            background: linear-gradient(135deg, #b5e2fc 0%, #a0d5f7 100%);
+
+        }
+
+        
+
+        .card-side {
+
+            display: none;
+
+        }
+
+        
+
+        .card-side.active {
+
+            display: block;
+
+        }
+
+        
+
+        .vocab-definition {
+
+            font-size: 1.2rem;
+
+            line-height: 1.6;
+
+            color: #333;
+
+            margin-bottom: 20px;
+
+        }
+
+        
+
+        .flip-instruction {
+
+            position: absolute;
+
+            bottom: 15px;
+
+            right: 15px;
+
+            font-size: 0.9rem;
+
+            color: #666;
+
+            font-style: italic;
+
+        }
+
+        
+
+        .vocab-card .card-icons {
+
+            position: absolute;
+
+            top: 20px;
+
+            right: 20px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+
+        }
+
+        
+
+        .vocab-card .snake-icon {
+
+            width: 0;
+
+            height: 0;
+
+            border-left: 15px solid transparent;
+
+            border-right: 15px solid transparent;
+
+            border-bottom: 20px solid #003f82;
+
+        }
+
+        
+
+        .vocab-card .ladder-icon {
+
+            width: 30px;
+
+            height: 4px;
+
+            background: #ca3941;
+
+            position: relative;
+
+            margin: 2px 0;
+
+        }
+
+        
+
+        .vocab-card .ladder-icon::before,
+
+        .vocab-card .ladder-icon::after {
+
+            content: '';
+
+            position: absolute;
+
+            width: 4px;
+
+            height: 20px;
+
+            background: #ca3941;
+
+        }
+
+        
+
+        .vocab-card .ladder-icon::before {
+
+            left: 2px;
+
+            top: -8px;
+
+        }
+
+        
+
+        .vocab-card .ladder-icon::after {
+
+            right: 2px;
+
+            top: -8px;
+
+        }
+
+        
+
+        .vocab-card h2 {
+
+            color: #1e4d5b;
+
+            font-size: 2.5rem;
+
+            font-weight: 900;
+
+            font-family: 'Crimson Text', serif;
+
+            margin-bottom: 30px;
+
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+
+            line-height: 1.1;
+
+        }
+
+        
+
+        .vocab-card .discuss-label {
+
+            color: #1e4d5b;
+
+            font-size: 3rem;
+
+            font-weight: 900;
+
+            font-family: 'Crimson Text', serif;
+
+            margin-bottom: 20px;
+
+            display: block;
+
+        }
+
+        
+
+        .vocab-card .question {
+
+            font-size: 1.4rem;
+
+            color: #333;
+
+            line-height: 1.6;
+
+            font-style: italic;
+
+        }
+
+        
+
+        .card-controls {
+
+            text-align: center;
+
+            margin-top: 30px;
+
+        }
+
+        
+
+        .card-btn {
+
+            background: #003f82;
+
+            color: white;
+
+            border: none;
+
+            padding: 12px 25px;
+
+            border-radius: 8px;
+
+            font-size: 1rem;
+
+            cursor: pointer;
+
+            margin: 0 10px;
+
+            transition: background 0.3s ease;
+
+        }
+
+        
+
+        .card-btn:hover {
+
+            background: #ca3941;
+
+        }
+
+        
+
+        .card-btn.secondary {
+
+            background: #b5e2fc;
+
+            color: #003f82;
+
+        }
+
+        
+
+        .card-btn.secondary:hover {
+
+            background: #e3eec1;
+
+        }
+
+        
+
+        .order-cta {
+
+            background: linear-gradient(135deg, #ca3941 0%, #e74c3c 100%);
+
+            color: white;
+
+            padding: 20px;
+
+            margin: 20px 0;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            box-shadow: 0 5px 15px rgba(202,57,65,0.3);
+
+        }
+
+        
+
+        .order-cta h3 {
+
+            margin-bottom: 10px;
+
+            font-size: 1.5rem;
+
+        }
+
+        
+
+        .order-cta p {
+
+            margin-bottom: 15px;
+
+            opacity: 0.9;
+
+        }
+
+        
+
+        .order-btn {
+
+            background: white;
+
+            color: #ca3941;
+
+            padding: 12px 30px;
+
+            border: none;
+
+            border-radius: 25px;
+
+            font-size: 1.1rem;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+        }
+
+        
+
+        .order-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+
+        }
+
+        
+
+        @media (max-width: 768px) {
+
+            .game-board {
+
+                grid-template-columns: repeat(2, 1fr);
+
+                gap: 10px;
+
+                padding: 20px;
+
+            }
+
+            
+
+            .main-title {
+
+                font-size: 2.5rem;
+
+            }
+
+            
+
+            .subtitle {
+
+                font-size: 1.1rem;
+
+            }
+
+            
+
+            .game-logo {
+
+                flex-direction: column;
+
+                gap: 20px;
+
+            }
+
+            
+
+            .visual-elements {
+
+                justify-content: center;
+
+            }
+
+            
+
+            .modal-content {
+
+                width: 95%;
+
+                margin: 10% auto;
+
+                padding: 20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="game-container">
+
+        <div class="header">
+
+            <div class="header-content">
+
+                <div class="game-logo">
+
+                    <div class="visual-elements">
+
+                        <div class="ladder-symbol">
+
+                            <div class="ladder-steps"></div>
+
+                        </div>
+
+                        <div class="sinulkhay-symbol"></div>
+
+                    </div>
+
+                    <div>
+
+                        <h1 class="main-title">Walking in Good Relations</h1>
+
+                        <p class="subtitle">a Sínulkhay & Ladders game for unlearning anti-Indigenous racism</p>
+
+                        <div class="demo-badge">🎮 Interactive Demo</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        
+
+        <div class="order-cta">
+
+            <h3>🎓 Get the Complete Educational Tool - $88</h3>
+
+            <p>This is a preview of our transformative learning experience. Order the full physical game with all materials included!</p>
+
+            <button class="order-btn" onclick="window.open('https://www.ta7taliya.com', '_blank')">Order at ta7taliya.com</button>
+
+        </div>
+
+        
+
+        <div class="game-board" id="gameBoard">
+
+            <!-- Squares will be generated by JavaScript -->
+
+        </div>
+
+        
+
+        <div class="controls">
+
+            <div class="player-position" id="playerPosition">Position: Start</div>
+
+            <button class="dice" id="rollDice" onclick="rollDice()">🎲</button>
+
+            <div style="margin-top: 20px;">
+
+                <button onclick="resetGame()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer;">Reset Game</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Modal for displaying square content -->
+
+    <div id="squareModal" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close" onclick="closeModal()">&times;</span>
+
+            <div id="modalContent"></div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        const vocabularyDefinitions = {
+
+            "Host Nations": {
+
+                definition: "The Host Nations of a particular place consist of the various Indigenous groups, such as Nations, Settlements, Tribes, or Bands, whose traditional territory it is situated on. Due to the diverse Indigenous customs of land ownership, sharing, and stewardship, it is common for numerous Indigenous Peoples to be recognized as the Host Nations of a specific location. Historically, territories and resources were shared across Nations and governed by cultural protocols and laws specific to that land.",
+
+                discussion: "Why is it important to you to learn about the Host Nations whose territory you live on? Do you know whose territory you grew up on?"
+
+            },
+
+            "Decolonizing": {
+
+                definition: "Decolonizing is undoing colonial impacts including surfacing our beliefs and questioning how we learned them. Colonial impacts started with the colonization of Indigenous Territories but they continue with ongoing systemic racism towards Indigenous Peoples.",
+
+                discussion: "Why do you think it is important to talk about colonial impacts now? How can decolonizing practices support you to walk in good relations with Indigenous Peoples?"
+
+            },
+
+            "Cultural Protocols": {
+
+                definition: "Cultural protocols encompass the diverse practices, traditions, and customs that cultural groups observe during greetings, community events, ceremonies, and business interactions. These protocols, which are learned behaviors considered normal and expected within a specific cultural context. Colonialism has normalized dominant cultural practices as preferred so it is crucial to learn, practice and honour all cultural expressions to walk in good relations.",
+
+                discussion: "What Cultural Protocols do you practice in your home? Can you think of protocols from other cultures you have learned about? What about Host Nation protocols?"
+
+            },
+
+            "Cultural Appropriation": {
+
+                definition: "Cultural appropriation is the act of using elements from another culture for personal gain, such as art, language, or customs. It often disrespects the original culture and reinforces harmful stereotypes. It is the opposite of walking in good relations.",
+
+                discussion: "For many years, it was illegal for Indigenous Nations to sing or drum our cultural songs, and practice their ceremonies. If we did, we would be punished. Why do you think acts of cultural appropriation are, or are not, harmful?"
+
+            },
+
+            "Extraction": {
+
+                definition: "Cultural Extraction involves taking someone's knowledge, experiences, or stories for your own benefit by publishing or sharing them as if they were your own, without offering anything in return or showing any consideration for the original source.",
+
+                discussion: "Why could it be considered disrespectful to ask Indigenous people to share their experiences and knowledge with you? How can you learn more about Indigenous Peoples and still be walking in good relations?"
+
+            },
+
+            "Cultural Empathy": {
+
+                definition: "Cultural Empathy is the practice of appreciating and understanding other cultures by taking the time to learn about their contexts.",
+
+                discussion: "What are some ways you have practiced Cultural Empathy in the past? Can you recognize missteps that lack Cultural Empathy? If so, how did you learn from it?"
+
+            },
+
+            "Erasure of Indigenous Culture": {
+
+                definition: "The erasure of Indigenous cultures refers to the systematic attempt to eliminate the unique identities, languages, traditions, and practices of Indigenous peoples. In Canada, it has included forced assimilation into dominant culture, suppression of our languages, and the removal of our cultural symbols and place names. Historically, laws like mandatory residential schools aimed to integrate Indigenous children into mainstream society, has resulted in the significant damage to our connection to cultural heritages and identities, which we are actively reclaiming.",
+
+                discussion: "Can you think of ways the erasure of Indigenous culture is ongoing? Can you think of ways Indigenous people have pushed back in order to keep their culture thriving?"
+
+            },
+
+            "Residential School": {
+
+                definition: "Indian Residential Schools were government-run institutions that forcibly took Indigenous children from their homes to isolate them from their culture, families, and traditions. The goal of these schools was to assimilate Indigenous children into European ways of life, including their religious beliefs and language. These schools were extremely violent environments for Indigenous children, and the cultural trauma they caused continues to have lasting effects. The last residential school in Canada closed in 1996.",
+
+                discussion: "Although it can be uncomfortable to learn about the violent history of residential schools, it is important to continue our education and not become paralyzed by shame and guilt. How can we support one another during these challenging learning experiences?"
+
+            },
+
+            "Consent": {
+
+                definition: "Ongoing consent means that consent is not a one-time agreement; individuals can withdraw their consent at any time. This is especially important when asking Indigenous people to share their stories, as they are never obligated to disclose their experiences—whether positive or traumatic.",
+
+                discussion: "Ongoing consent applies to various movements, especially concerning non-dominant cultural groups. In Indigenous Sovereignty and Environmental Justice, for example, how can ongoing consent promote good relationships with Host Nations? Are there other movements where ongoing consent is crucial?"
+
+            },
+
+            "Triggers": {
+
+                definition: "Triggers are emotional, mental, or physical reminders of trauma or stress that may cause harm to those affected by them.",
+
+                discussion: "While we want to avoid triggering people, it's important to know how to support someone if they do. For example, if you're speaking with an Indigenous person and they become triggered, what are effective ways to provide support?"
+
+            },
+
+            "UNDRIP": {
+
+                definition: "UNDRIP: The United Nations Declaration on the Rights of Indigenous Peoples lists the rights that 'constitute the minimum standards for the survival, dignity and well-being of the Indigenous peoples of the world.'",
+
+                discussion: "Both these documents speak to human rights - why do you think the Canadian Government historically tried to displace Indigenous peoples from accessing human rights? Beyond these documents, how can we create a more just future for Indigenous peoples and Nations?"
+
+            },
+
+            "Truth and Reconciliation Commission Calls to Action": {
+
+                definition: "TRC Calls to Action: Grounded in the lived experiences of Indian Residential School Survivors, the TRC 94 Calls to Action aim to 'redress the legacy of residential schools & advance the process of Canadian reconciliation.'",
+
+                discussion: "Both these documents speak to human rights - why do you think the Canadian Government historically tried to displace Indigenous peoples from accessing human rights? Beyond these documents, how can we create a more just future for Indigenous peoples and Nations?"
+
+            },
+
+            "Pan-Indigeneity": {
+
+                definition: "Pan Indigeneity refers to the settler-colonial narrative that suggests all Indigenous peoples and cultures are the same or fails to acknowledge the differences among Nations, tribes, or bands.",
+
+                discussion: "Why is the concept of Pan-Indigeneity detrimental to Indigenous peoples worldwide?"
+
+            },
+
+            "Urban Indigenous": {
+
+                definition: "'Urban Indigenous' refers to Indigenous people living outside their ancestral territories due to colonialism and enforced disconnection. It's important not to judge a person's Indigeneity based solely on their current residence.",
+
+                discussion: "Why is it important to recognize Urban Indigenous culture as distinct from the specific culture of a Nation?"
+
+            },
+
+            "Indigenous": {
+
+                definition: "Given the diversity of Indigenous peoples globally, there is no single definition of Indigeneity. Indigenous peoples are the inheritors and practitioners of social, cultural, economic, and political systems that are distinct from the dominant and/or colonial societies in which they reside.",
+
+                discussion: "Why is it important not to assign a single definition to the word 'Indigenous'?"
+
+            }
+
+        };
+
+
+
+        const gameSquares = [
+
+            {
+
+                number: 1,
+
+                title: "Decide to walk in good relations with Host Nations",
+
+                type: "ladder",
+
+                vocab: "Host Nations, Decolonizing",
+
+                prompt: "Walking in good relations involves balance, care, equity, and openness. It means we take good care of ourselves and each other while being receptive to the ideas, experiences, and cultures of others. It is essential to recognize that the lands we inhabit have been cared for by the Host Nation Ancestors since time immemorial. Therefore, being in good relations with Host Nations also means being in good relations with the Land and Ancestors.",
+
+                discussion: "Why is it important we begin decolonizing in our classrooms?"
+
+            },
+
+            {
+
+                number: 2,
+
+                title: "Learn to pronounce local Indigenous place names",
+
+                type: "ladder",
+
+                vocab: "",
+
+                prompt: "Learning local Indigenous place names is an essential step in viewing the land you inhabit from a decolonial perspective. When we change our relationship with the land, it is crucial to understand its historical layers and specific contexts. Both a place's colonial name and its ancestral name(s) are integral parts of the land's history and stories.",
+
+                discussion: "Do you know any local Indigenous place names in your area? Beyond just the name of the Territory, do you know any village sites or landmarks?"
+
+            },
+
+            {
+
+                number: 3,
+
+                title: "Forget to acknowledge Indigenous Territory",
+
+                type: "snake",
+
+                vocab: "",
+
+                prompt: "There are many reasons why people hesitate to acknowledge Indigenous Territory. Fear of mispronouncing Indigenous words can discourage individuals from even attempting to engage. Additionally, social or political factors may contribute to this reluctance. Failing to acknowledge Indigenous Territory perpetuates the erasure of Indigenous history and culture.",
+
+                discussion: "How can we encourage meaningful Territorial Acknowledgements?"
+
+            },
+
+            {
+
+                number: 4,
+
+                title: "Learn local greetings, protocols + customs",
+
+                type: "ladder",
+
+                vocab: "Cultural Protocols",
+
+                prompt: "Indigenous cultures and customs can differ significantly among various communities. One important way to show respect for the Host Nations whose land you inhabit is to learn their protocols and greetings. Demonstrating respect for the Nations and Ancestors of the territory fosters good relations.",
+
+                discussion: "Do you know any local greetings in the Indigenous language? If so, can you share them? If not, do you have any resources you could learn from?"
+
+            },
+
+            {
+
+                number: 5,
+
+                title: "Make fun of someone for not doing it right",
+
+                type: "snake",
+
+                vocab: "",
+
+                prompt: "Perfectionism in the process of unlearning anti-Indigenous racism is a fundamentally colonial concept. We are all bound to make mistakes along the way. This journey is not a competition to 'decolonize better' than one another; rather, it is an opportunity to uplift each other and grow together.",
+
+                discussion: "Can you brainstorm some phrases to invite someone into a conversation about how to do things differently rather than make fun of them?"
+
+            },
+
+            {
+
+                number: 6,
+
+                title: "Get to know the stories of local Ancestors",
+
+                type: "ladder",
+
+                vocab: "Extraction, Cultural Appropriation",
+
+                prompt: "Seeking out ancestral stories from the land will provide you with valuable context about the area where you live, as well as a deeper understanding of the people who own the land. When seeking these stories, it is essential to incorporate cultural protocols and foster good relationships in your learning process.",
+
+                discussion: "When researching Ancestral stories, can you think of examples of how this learning might lead to cultural appropriation? Additionally, can you brainstorm ideas on how to approach this respectfully?"
+
+            },
+
+            {
+
+                number: 7,
+
+                title: "Educate yourself on Residential Schools even though it is hard",
+
+                type: "ladder",
+
+                vocab: "Residential School",
+
+                prompt: "Educating yourself about residential schools is vital, even though the subject can be emotionally challenging. Confronting this painful history often evokes discomfort, which is a normal part of the learning experience. This discomfort can motivate us to pursue decolonization and reflect on our own beliefs and privileges.",
+
+                discussion: "Why is it important to you to educate yourself on Residential Schools?"
+
+            },
+
+            {
+
+                number: 8,
+
+                title: "Believe there is only one way to learn about history",
+
+                type: "snake",
+
+                vocab: "Erasure of Indigenous Culture",
+
+                prompt: "Until recently, our media and education system largely ignored the truth about Canada's role in the attempted assimilation of Indigenous peoples. For many decades, Indigenous cultures and experiences have been hidden, rewritten by non-Indigenous authors and scholars. Indigenous languages, cultures, stories and history, were actively erased.",
+
+                discussion: "Is there a story from history that you have recently learned a new perspective about? How has it changed your approach to learning and critical thinking?"
+
+            },
+
+            {
+
+                number: 9,
+
+                title: "Practice Cultural Empathy when learning about colonization",
+
+                type: "ladder",
+
+                vocab: "Cultural Empathy",
+
+                prompt: "Learning the history and truth of erasure and the impacts of Indian residential schools is complex and should feel uncomfortable. But remember, discomfort activates us to contribute to changing the society we live in. Continuing learning is brave and sets us up to be better allies. Practicing cultural empathy is key.",
+
+                discussion: "What are some things you can do to take care of yourself in this learning experience?"
+
+            },
+
+            {
+
+                number: 10,
+
+                title: "Forget to ask for consent when wanting to talk about Residential Schools",
+
+                type: "snake",
+
+                vocab: "Consent, Triggers",
+
+                prompt: "Considering how difficult it has been for you to learn about residential schools, imagine how difficult it is for Indigenous people. The impacts of residential schools are ongoing and it is triggering to think of the violence that continues to hurt our families. It is important to practise asking for ongoing consent when talking about these difficult topics.",
+
+                discussion: "Can you brainstorm ways to check in with those who are sharing their experiences with residential schools? How will you continue to ask for consent?"
+
+            },
+
+            {
+
+                number: 11,
+
+                title: "Learn about UNDRIP & the TRC Calls to Action",
+
+                type: "ladder",
+
+                vocab: "UNDRIP, Truth and Reconciliation Commission Calls to Action",
+
+                prompt: "Taking the time to read the United Nations Declaration on the Rights of Indigenous Peoples and the TRC's Calls to Action helps you respond to the question 'what should we do?' Each document maps out actions that governments, community members, companies and individuals to implement to reverse the impacts of colonialism.",
+
+                discussion: "Why is it important to learn about UNDRIP and the TRC Calls to Action?"
+
+            },
+
+            {
+
+                number: 12,
+
+                title: "Assume all Indigenous Peoples have the same cultures, histories, & experiences",
+
+                type: "snake",
+
+                vocab: "Pan-Indigeneity, Urban Indigenous",
+
+                prompt: "Like countries around the globe, Indigenous Nations also have vast and varied cultures, histories, and experiences. Believing that we all share one culture is a colonial view that reinforces assimilation. The erasure of Indigenous cultures includes seeing us as pan-indigenous. Further, to believe that Indigenous culture stopped evolving and changing after colonisation is a harmful belief as well.",
+
+                discussion: "How can we, as allies, combat the harmful effects of Pan-Indigeneity?"
+
+            },
+
+            {
+
+                number: 13,
+
+                title: "Keep on walking in good relations",
+
+                type: "ladder",
+
+                vocab: "",
+
+                prompt: "Walking in good relations with Indigenous Peoples requires us to engage deeply with their histories and cultures while unlearning harmful narratives. By embracing discomfort and practising cultural empathy, we can honour the voices that have been silenced and acknowledge the ongoing impacts of colonization. It's essential to seek ongoing consent and recognise the distinct experiences of diverse Indigenous Nations.",
+
+                discussion: "What can you contribute to now? within a year?"
+
+            }
+
+        ];
+
+
+
+        let currentPosition = 0;
+
+        let gameComplete = false;
+
+        let currentCardSide = 'definition';
+
+
+
+        function initializeGame() {
+
+            const board = document.getElementById('gameBoard');
+
+            board.innerHTML = '';
+
+            
+
+            gameSquares.forEach(square => {
+
+                const squareElement = document.createElement('div');
+
+                squareElement.className = `square ${square.type}`;
+
+                squareElement.onclick = () => showSquareDetails(square);
+
+                
+
+                squareElement.innerHTML = `
+
+                    <div class="square-number">${square.number}</div>
+
+                    <div class="square-title">${square.title}</div>
+
+                    <div class="square-type ${square.type}-badge">
+
+                        ${square.type === 'ladder' ? '🪜 Ladder' : '🐍 Sínulkhay'}
+
+                    </div>
+
+                `;
+
+                
+
+                board.appendChild(squareElement);
+
+            });
+
+            
+
+            updatePlayerPosition();
+
+        }
+
+
+
+        function rollDice() {
+
+            if (gameComplete) return;
+
+            
+
+            const dice = Math.floor(Math.random() * 6) + 1;
+
+            document.getElementById('rollDice').textContent = dice;
+
+            
+
+            setTimeout(() => {
+
+                document.getElementById('rollDice').textContent = '🎲';
+
+                movePlayer(dice);
+
+            }, 1000);
+
+        }
+
+
+
+        function movePlayer(steps) {
+
+            currentPosition += steps;
+
+            
+
+            if (currentPosition >= 13) {
+
+                currentPosition = 13;
+
+                gameComplete = true;
+
+                alert('Congratulations! You\'ve completed your journey of Walking in Good Relations. Remember, this is a lifelong journey of learning and unlearning.');
+
+            }
+
+            
+
+            updatePlayerPosition();
+
+            
+
+            if (currentPosition > 0 && currentPosition <= 13) {
+
+                const currentSquare = gameSquares[currentPosition - 1];
+
+                setTimeout(() => showSquareDetails(currentSquare), 500);
+
+            }
+
+        }
+
+
+
+        function updatePlayerPosition() {
+
+            const positionText = currentPosition === 0 ? 'Start' : 
+
+                               currentPosition === 13 ? 'Journey Complete!' : 
+
+                               `Square ${currentPosition}`;
+
+            document.getElementById('playerPosition').textContent = `Position: ${positionText}`;
+
+            
+
+            // Highlight current square
+
+            document.querySelectorAll('.square').forEach((square, index) => {
+
+                square.style.border = index === currentPosition - 1 ? '3px solid #ca3941' : '';
+
+            });
+
+        }
+
+
+
+        function showSquareDetails(square) {
+
+            const modal = document.getElementById('squareModal');
+
+            const content = document.getElementById('modalContent');
+
+            
+
+            content.innerHTML = `
+
+                <h2>${square.number}. ${square.title}</h2>
+
+                <div class="square-type ${square.type}-badge" style="margin: 10px 0;">
+
+                    ${square.type === 'ladder' ? '🪜 Ladder' : '🐍 Sínulkhay'}
+
+                </div>
+
+                
+
+                ${square.vocab ? `
+
+                    <div class="vocab-term">
+
+                        <strong>Vocabulary:</strong> ${square.vocab}
+
+                    </div>
+
+                ` : ''}
+
+                
+
+                <div style="margin: 20px 0;">
+
+                    <strong>Prompt:</strong><br>
+
+                    ${square.prompt}
+
+                </div>
+
+                
+
+                <div class="discussion-prompt">
+
+                    <strong>Discussion:</strong><br>
+
+                    ${square.discussion}
+
+                </div>
+
+                
+
+                <div class="card-controls">
+
+                    <button class="card-btn" onclick="showVocabCard(${square.number})">View Vocab Card</button>
+
+                    <button class="card-btn secondary" onclick="closeModal()">Close</button>
+
+                </div>
+
+            `;
+
+            
+
+            modal.style.display = 'block';
+
+        }
+
+
+
+        function showVocabCard(squareNumber) {
+
+            const square = gameSquares[squareNumber - 1];
+
+            const modal = document.getElementById('squareModal');
+
+            const content = document.getElementById('modalContent');
+
+            
+
+            // Get vocabulary definitions
+
+            const vocabTerms = square.vocab.split(', ');
+
+            let vocabContent = '';
+
+            
+
+            if (vocabTerms.length > 0 && vocabTerms[0] !== '') {
+
+                const firstTerm = vocabTerms[0];
+
+                const vocabData = vocabularyDefinitions[firstTerm];
+
+                
+
+                if (vocabData) {
+
+                    const icons = square.type === 'ladder' ? 
+
+                        '<div class="ladder-icon"></div><div class="ladder-icon"></div><div class="ladder-icon"></div>' :
+
+                        '<div class="snake-icon"></div><div class="snake-icon"></div><div class="snake-icon"></div>';
+
+                    
+
+                    vocabContent = `
+
+                        <div class="vocab-card" onclick="flipCard()" ${square.type === 'snake' ? 'style="background: linear-gradient(135deg, #b5e2fc 0%, #a0d5f7 100%);"' : 'style="background: linear-gradient(135deg, #e3eec1 0%, #d4e6b8 100%);"'}>
+
+                            <div class="card-icons">
+
+                                ${icons}
+
+                            </div>
+
+                            
+
+                            <div class="card-side definition-side active">
+
+                                <h2>${firstTerm}</h2>
+
+                                <div class="vocab-definition">${vocabData.definition}</div>
+
+                            </div>
+
+                            
+
+                            <div class="card-side discussion-side">
+
+                                <span class="discuss-label">Discuss:</span>
+
+                                <div class="question">${vocabData.discussion}</div>
+
+                            </div>
+
+                            
+
+                            <div class="flip-instruction">Click to flip card</div>
+
+                            
+
+                            <div class="card-controls">
+
+                                <button class="card-btn secondary" onclick="showSquareDetails(gameSquares[${squareNumber - 1}])">Back to Square</button>
+
+                                <button class="card-btn secondary" onclick="closeModal()">Close</button>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                } else {
+
+                    vocabContent = `
+
+                        <div class="vocab-card">
+
+                            <h2>Vocabulary Terms</h2>
+
+                            <div class="vocab-definition"><strong>${square.vocab}</strong></div>
+
+                            <div class="card-controls">
+
+                                <button class="card-btn secondary" onclick="showSquareDetails(gameSquares[${squareNumber - 1}])">Back to Square</button>
+
+                                <button class="card-btn secondary" onclick="closeModal()">Close</button>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+
+            } else {
+
+                vocabContent = `
+
+                    <div class="vocab-card">
+
+                        <h2>No vocabulary terms for this square</h2>
+
+                        <div class="card-controls">
+
+                            <button class="card-btn secondary" onclick="showSquareDetails(gameSquares[${squareNumber - 1}])">Back to Square</button>
+
+                            <button class="card-btn secondary" onclick="closeModal()">Close</button>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+            
+
+            content.innerHTML = vocabContent;
+
+            currentCardSide = 'definition';
+
+            modal.style.display = 'block';
+
+        }
+
+
+
+        function flipCard() {
+
+            const definitionSide = document.querySelector('.definition-side');
+
+            const discussionSide = document.querySelector('.discussion-side');
+
+            const card = document.querySelector('.vocab-card');
+
+            
+
+            if (currentCardSide === 'definition') {
+
+                definitionSide.classList.remove('active');
+
+                discussionSide.classList.add('active');
+
+                card.classList.add('flipped');
+
+                currentCardSide = 'discussion';
+
+            } else {
+
+                discussionSide.classList.remove('active');
+
+                definitionSide.classList.add('active');
+
+                card.classList.remove('flipped');
+
+                currentCardSide = 'definition';
+
+            }
+
+        }
+
+
+
+        function closeModal() {
+
+            document.getElementById('squareModal').style.display = 'none';
+
+        }
+
+
+
+        function resetGame() {
+
+            currentPosition = 0;
+
+            gameComplete = false;
+
+            updatePlayerPosition();
+
+            document.getElementById('rollDice').textContent = '🎲';
+
+        }
+
+
+
+        // Close modal when clicking outside
+
+        window.onclick = function(event) {
+
+            const modal = document.getElementById('squareModal');
+
+            if (event.target === modal) {
+
+                closeModal();
+
+            }
+
+        }
+
+
+
+        // Initialize the game when page loads
+
+        window.onload = initializeGame;
+
+    </script>
+
+</body>
+
+</html>
